@@ -1,24 +1,27 @@
 const productModel = require("../dao/models/products.model");
 
 
-addProduct = async (product) => {
+const addProduct = async (product) => {
     return await productModel.create(product);
 }
-getProduct = async (page = 1, limit = 6 , sort = '', query ={}) => {
+
+const getProduct = async (page = 1, limit = 6 , sort = '', query ={}) => {
     return  await productModel.paginate(query, { page, limit, sort:{price:sort}});
 }
 
-getProductId = async (id) => {
+const getProductId = async (id) => {
     return await productModel.findById(id);
 }
 
-UpdateProduct = async (id, product) => {
+const UpdateProduct = async (id, product) => {
     return await productModel.updateOne({_id:id}, product);
 }
 
-DeleteProductId = async (id) => {
+const DeleteProductId = async (id) => {
     return await productModel.deleteOne({_id:id});
 }
+
+
 
 module.exports = {
     addProduct,
